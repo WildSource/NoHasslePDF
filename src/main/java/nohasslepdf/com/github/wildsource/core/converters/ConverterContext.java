@@ -1,4 +1,4 @@
-package nohasslepdf.com.github.wildsource.core;
+package nohasslepdf.com.github.wildsource.core.converters;
 
 public class ConverterContext {
 	private ConverterStrategy strategy;

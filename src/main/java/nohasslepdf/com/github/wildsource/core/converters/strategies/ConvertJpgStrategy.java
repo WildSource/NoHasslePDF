@@ -1,4 +1,4 @@
-package nohasslepdf.com.github.wildsource.core;
+package nohasslepdf.com.github.wildsource.core.converters.strategies;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,6 +10,8 @@ import javax.imageio.ImageIO;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.PdfWriter;
+
+import nohasslepdf.com.github.wildsource.core.converters.ConverterStrategy;
 
 public class ConvertJpgStrategy implements ConverterStrategy {
 
