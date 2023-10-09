@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.PdfWriter;
 
 import nohasslepdf.com.github.wildsource.core.converters.ConverterStrategy;
@@ -21,7 +22,8 @@ public class ConvertJpgStrategy implements ConverterStrategy {
 	@Override
 	public void convert(String filePath) {
 		// step 1: creation of a document-object
-		Document document = new Document();
+		Document document = new Document(
+				new Rectangle(ConverterStrategy.DEFAULT_PAGE_WIDTH, ConverterStrategy.DEFAULT_PAGE_HEIGHT));
 		System.out.println("Document object created");
 
 		try {
@@ -44,7 +46,7 @@ public class ConvertJpgStrategy implements ConverterStrategy {
 											.getHeight();
 
 			java.awt.Image resizedImage = bufferedImage.getScaledInstance(docWidth, docHeight,
-					java.awt.Image.SCALE_DEFAULT);
+					java.awt.Image.SCALE_SMOOTH);
 
 			com.lowagie.text.Image jpg = com.lowagie.text.Image.getInstance(resizedImage, null);
 
