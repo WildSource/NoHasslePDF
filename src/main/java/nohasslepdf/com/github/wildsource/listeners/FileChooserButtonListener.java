@@ -31,7 +31,7 @@ public class FileChooserButtonListener implements ActionListener {
 		}
 		if (status == JFileChooser.APPROVE_OPTION) {
 			this.panel = new PreviewPanel(chooser.getSelectedFiles());
-			this.frame.add(new JScrollPane(this.panel));
+			this.frame.add(new JScrollPane(this.panel), "wrap");
 			this.frame.pack();
 			this.frame.setExtendedState(this.frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		}

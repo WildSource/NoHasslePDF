@@ -6,7 +6,6 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JProgressBar;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import net.miginfocom.swing.MigLayout;
@@ -16,11 +15,13 @@ public class Window {
 	private JFrame frame;
 	private JFileChooser chooser;
 	private JButton filechooserButton;
+	private JButton convertButton;
 
 	public Window() {
 		framesetup();
 		fileChooserSetup();
 		fileChooserButtonSetup();
+		convertButtonSetup();
 		frameInit();
 	}
 
@@ -46,7 +47,13 @@ public class Window {
 		filechooserButton = new JButton("browse");
 		filechooserButton.addActionListener(new FileChooserButtonListener(chooser, frame));
 		filechooserButton.setPreferredSize(new Dimension(100, 30));
-		frame.add(filechooserButton, "wrap");
+		frame.add(filechooserButton);
+	}
+
+	private void convertButtonSetup() {
+		this.convertButton = new JButton("Convert");
+		this.convertButton.setPreferredSize(new Dimension(100, 30));
+		frame.add(this.convertButton, "wrap");
 	}
 
 	public void frameInit() {
