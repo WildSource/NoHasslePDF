@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 
 import nohasslepdf.com.github.wildsource.gui.PreviewPanel;
@@ -16,6 +17,8 @@ public class FileChooserButtonListener implements ActionListener {
 	JFrame frame;
 
 	PreviewPanel panel;
+
+	JProgressBar progress;
 
 	public FileChooserButtonListener(JFileChooser chooser, JFrame frame) {
 		this.chooser = chooser;
@@ -31,7 +34,11 @@ public class FileChooserButtonListener implements ActionListener {
 		}
 		if (status == JFileChooser.APPROVE_OPTION) {
 			this.panel = new PreviewPanel(chooser.getSelectedFiles());
+			this.progress = new JProgressBar();
+			this.frame.add(this.progress);
+			this.progress.setIndeterminate(true);
 			this.frame.add(new JScrollPane(this.panel));
+			this.progress.setIndeterminate(false);
 			this.frame.pack();
 			this.frame.setExtendedState(this.frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		}
