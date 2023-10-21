@@ -18,23 +18,23 @@ public class FileChooserButtonListener implements ActionListener {
 
 	PreviewPanel panel;
 
+	JScrollPane scrollPane;
+
 	public FileChooserButtonListener(JFileChooser chooser, Window window) {
 		this.chooser = chooser;
 		this.window = window;
+		this.panel = null;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		int status = chooser.showOpenDialog(null);
-		if (this.panel != null) {
-			this.window	.getFrame()
-						.remove(this.panel);
-			this.panel = null;
-		}
+		resetPreview();
 		if (status == JFileChooser.APPROVE_OPTION) {
 			this.panel = new PreviewPanel(chooser.getSelectedFiles());
+			this.scrollPane = new JScrollPane(this.panel);
 			this.window	.getFrame()
-						.add(new JScrollPane(this.panel), "wrap");
+						.add(this.scrollPane, "wrap");
 			this.window	.getFrame()
 						.pack();
 			this.window	.getFrame()
@@ -43,6 +43,14 @@ public class FileChooserButtonListener implements ActionListener {
 								| JFrame.MAXIMIZED_BOTH);
 		}
 		this.window.setPageData(this.chooser.getSelectedFiles());
+	}
+
+	public void resetPreview() {
+		if (this.panel != null) {
+			this.window	.getFrame()
+						.remove(this.scrollPane);
+			this.panel = null;
+		}
 	}
 
 }
