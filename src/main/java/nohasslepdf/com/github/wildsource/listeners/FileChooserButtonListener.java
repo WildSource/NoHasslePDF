@@ -8,33 +8,41 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
 import nohasslepdf.com.github.wildsource.gui.PreviewPanel;
+import nohasslepdf.com.github.wildsource.gui.Window;
 
 public class FileChooserButtonListener implements ActionListener {
 
 	JFileChooser chooser;
 
-	JFrame frame;
+	Window window;
 
 	PreviewPanel panel;
 
-	public FileChooserButtonListener(JFileChooser chooser, JFrame frame) {
+	public FileChooserButtonListener(JFileChooser chooser, Window window) {
 		this.chooser = chooser;
-		this.frame = frame;
+		this.window = window;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		int status = chooser.showOpenDialog(null);
 		if (this.panel != null) {
-			this.frame.remove(this.panel);
+			this.window	.getFrame()
+						.remove(this.panel);
 			this.panel = null;
 		}
 		if (status == JFileChooser.APPROVE_OPTION) {
 			this.panel = new PreviewPanel(chooser.getSelectedFiles());
-			this.frame.add(new JScrollPane(this.panel), "wrap");
-			this.frame.pack();
-			this.frame.setExtendedState(this.frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+			this.window	.getFrame()
+						.add(new JScrollPane(this.panel), "wrap");
+			this.window	.getFrame()
+						.pack();
+			this.window	.getFrame()
+						.setExtendedState(this.window	.getFrame()
+														.getExtendedState()
+								| JFrame.MAXIMIZED_BOTH);
 		}
+		this.window.setPageData(this.chooser.getSelectedFiles());
 	}
 
 }

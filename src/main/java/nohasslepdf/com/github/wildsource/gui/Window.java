@@ -1,6 +1,7 @@
 package nohasslepdf.com.github.wildsource.gui;
 
 import java.awt.Dimension;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -9,15 +10,18 @@ import javax.swing.JLabel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import net.miginfocom.swing.MigLayout;
+import nohasslepdf.com.github.wildsource.listeners.ConvertButtonListener;
 import nohasslepdf.com.github.wildsource.listeners.FileChooserButtonListener;
 
 public class Window {
+	private File[] pageData;
 	private JFrame frame;
 	private JFileChooser chooser;
 	private JButton filechooserButton;
 	private JButton convertButton;
 
 	public Window() {
+		this.pageData = null;
 		framesetup();
 		fileChooserSetup();
 		fileChooserButtonSetup();
@@ -45,7 +49,7 @@ public class Window {
 
 	public void fileChooserButtonSetup() {
 		filechooserButton = new JButton("browse");
-		filechooserButton.addActionListener(new FileChooserButtonListener(chooser, frame));
+		filechooserButton.addActionListener(new FileChooserButtonListener(chooser, this));
 		filechooserButton.setPreferredSize(new Dimension(100, 30));
 		frame.add(filechooserButton);
 	}
@@ -53,6 +57,7 @@ public class Window {
 	private void convertButtonSetup() {
 		this.convertButton = new JButton("Convert");
 		this.convertButton.setPreferredSize(new Dimension(100, 30));
+		this.convertButton.addActionListener(new ConvertButtonListener(this));
 		frame.add(this.convertButton, "wrap");
 	}
 
@@ -69,5 +74,37 @@ public class Window {
 
 	public void setFrame(JFrame frame) {
 		this.frame = frame;
+	}
+
+	public File[] getPageData() {
+		return pageData;
+	}
+
+	public void setPageData(File[] pageData) {
+		this.pageData = pageData;
+	}
+
+	public JFileChooser getChooser() {
+		return chooser;
+	}
+
+	public void setChooser(JFileChooser chooser) {
+		this.chooser = chooser;
+	}
+
+	public JButton getFilechooserButton() {
+		return filechooserButton;
+	}
+
+	public void setFilechooserButton(JButton filechooserButton) {
+		this.filechooserButton = filechooserButton;
+	}
+
+	public JButton getConvertButton() {
+		return convertButton;
+	}
+
+	public void setConvertButton(JButton convertButton) {
+		this.convertButton = convertButton;
 	}
 }
