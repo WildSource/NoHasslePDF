@@ -6,7 +6,6 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 
 import net.miginfocom.swing.MigLayout;
 
