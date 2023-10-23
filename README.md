@@ -3,7 +3,7 @@ Free tool to use to convert pdfs with no limits and you don't need to pay unlike
 
 ## Features
 ### file conversion
-- jpg (scaling issues)
+- jpg
 - png
 ### compression
 in uncertain future (if I can figure it out)
